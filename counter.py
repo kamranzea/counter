@@ -2,12 +2,22 @@ import argparse
 import time
 import keyboard
 
-def counter(x):
-    for i in range(x):
-        if keyboard.is_pressed(' '):
-            break
-        print(i)
-        time.sleep(1)
+def hotkey_pressed():
+    print("space pressed")
+    global counting
+    counting = False
+
+def counter(a):
+    global counting
+    counting = True
+    a=0
+    while counting:
+      print(a)
+      a += 1
+      time.sleep(1)
+
+#using a hotkey function
+keyboard.add_hotkey(' ', hotkey_pressed)
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
